@@ -1,12 +1,11 @@
 # gomost
 
-A host proxy allowing you to host multiple sites from the one server
+A proxy allowing you to host multiple sites (unique hosts) from the one server
 
 ## Overview
 
-If you want to host multiple sites from one machine you can use gomost (GO Multiple hOST).
-It is a basic reverse proxy that can either load static content from the filesystem (it matches the host to the folder name), forward the request to another server endpoint or if integrating into
-your own app a custom handler for any host.
+gomost (GO Multiple hOST) is used when you need to host multiple sites each with different host names from one machine.
+It is a simple reverse proxy for each unique host that can either deliver static content from the filesystem (it matches the host to a folder name), forward the request to another server endpoint or if integrating into your own app a custom handler for any host.
 
 ## Installation
 
@@ -21,7 +20,7 @@ By default, the current directory where the program is executed will be used
 as the root static folder. If you wish to change this, you can provide a configuration
 file such as:
 
-```
+```yaml
   host: :8080
   StaticDir: /the/path/to/the/root/dir
 ```
@@ -32,7 +31,7 @@ then run `gomost -c=myconf.yaml`
 
 If you wish to proxy requests to another application you need to provide a YAML configuration file that provides the proxy host mappings.
 
-```
+```yaml
   host: :8080
   proxies:
     -
