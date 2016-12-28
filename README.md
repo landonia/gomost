@@ -54,7 +54,6 @@ endpoints for each host.
   package main
 
   import (
-    "flag"
     "os"
 
   	"github.com/landonia/gomost/proxy"
