@@ -20,7 +20,7 @@ By default, the current directory where the program is executed will be used
 as the root static folder. If you wish to change this, you can provide a configuration
 file such as:
 
-```yaml
+```
   host: :8080
   StaticDir: /the/path/to/the/root/dir
 ```
@@ -31,7 +31,7 @@ then run `gomost -c=myconf.yaml`
 
 If you wish to proxy requests to another application you need to provide a YAML configuration file that provides the proxy host mappings.
 
-```yaml
+```
   host: :8080
   proxies:
     -
@@ -89,6 +89,27 @@ endpoints for each host.
 ```
 
 Remember that you can use a combination of static, proxy and local handlers for each host.
+
+### Config Options
+
+There are multiple other configuration properties than can be provided to the program.
+
+```
+  host: :80 // The local address - Set to ':80' when in production
+  loglevel: fatal|error|warn|info|debug|trace // info by default
+  StaticDir: /the/path/to/the/root/dir // The location of the static resources
+  proxies:
+    -
+      proxy: www.dev1.com
+      host: http://localhost:8090
+    -
+      proxy: www.dev2.com
+      host: http://localhost:8091
+  ssl:
+    enable: true // false by default
+    certfile: /the/path/to/the/cert/file
+    keyfile: /the/path/to/the/key/file
+```
 
 ## About
 
