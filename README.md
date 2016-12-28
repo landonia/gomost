@@ -62,11 +62,6 @@ endpoints for each host.
 
   func main() {
 
-  	// Default the local host bind address
-  	if config.Host == "" {
-  		config.Host = ":8080"
-  	}
-
   	// Initialise the server with the default config
   	p, err := proxy.Default()
   	if err != nil {
