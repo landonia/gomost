@@ -58,6 +58,7 @@ func main() {
 		signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
 		go func() {
 			<-sigs
+			logger.Info("Received exit signal - shutting down")
 			p.Shutdown()
 		}()
 	}()
