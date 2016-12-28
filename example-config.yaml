@@ -1,0 +1,9 @@
+host: :8080
+loglevel: trace
+proxies:
+  -
+    proxy: www.dev1.com:8080
+    host: http://localhost:8090
+  -
+    proxy: www.dev2.com:8080
+    host: http://localhost:8091
