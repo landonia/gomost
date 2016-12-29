@@ -1,5 +1,7 @@
 # gomost
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/landonia/gomost)](https://goreportcard.com/report/github.com/landonia/gomost)
+
 A proxy allowing you to host multiple sites (unique hosts) from the one server
 
 ## Overview
