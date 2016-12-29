@@ -99,7 +99,7 @@ There are multiple other configuration properties than can be provided to the pr
 ```
   host: :80 // The local address - Set to ':80' when in production
   loglevel: fatal|error|warn|info|debug|trace // info by default
-  StaticDir: /the/path/to/the/root/dir // The location of the static resources
+  static: /the/path/to/the/root/dir // The location of the static resources
   proxies:
     -
       proxy: www.dev1.com
