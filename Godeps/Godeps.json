@@ -1,0 +1,15 @@
+{
+	"ImportPath": "github.com/landonia/gomost",
+	"GoVersion": "go1.7",
+	"GodepVersion": "v75",
+	"Deps": [
+		{
+			"ImportPath": "github.com/landonia/golog",
+			"Rev": "76bb66a7854dc6d89c21b89da7ff502305b0a0a3"
+		},
+		{
+			"ImportPath": "gopkg.in/yaml.v2",
+			"Rev": "a5b47d31c556af34a302ce5d659e6fea44d90de0"
+		}
+	]
+}
