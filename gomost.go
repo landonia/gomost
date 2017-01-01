@@ -21,6 +21,7 @@ func main() {
 
 	// Get access to the settings
 	configPath := flag.String("c", "", "The configuration file")
+	prod := flag.Bool("prod", false, "Override production mode")
 	flag.Parse()
 	var config proxy.Configuration
 	var err error
@@ -32,18 +33,17 @@ func main() {
 
 		// otherwise create a basic config that will host the static files from
 		// the current directory
-		config = proxy.Configuration{
-			StaticDir: ".",
-		}
+		config = proxy.DefaultConfig()
 	}
 	if err != nil {
 		logger.Fatal("Could not parse configuration: %s", err.Error())
 	}
 
 	// Default the local host bind address
-	if config.Host == "" {
-		config.Host = ":8080"
+	if config.Addr == "" {
+		config.Addr = proxy.DefaultSSLAddr
 	}
+	config.Prod = *prod
 	golog.LogLevel(config.LogLevel)
 
 	// initialise the server

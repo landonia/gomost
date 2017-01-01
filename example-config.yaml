@@ -1,5 +1,7 @@
-host: :8080
+prod: false
+addr: :8080
 loglevel: trace
+static: ./static
 proxies:
   -
     proxy: www.dev1.com:8080
@@ -7,3 +9,8 @@ proxies:
   -
     proxy: www.dev2.com:8080
     host: http://localhost:8091
+ssl:
+  redirecthttp:
+    enable: true
+    addr: :8080
+  DisableLetsEncrypt: false

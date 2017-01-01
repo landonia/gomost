@@ -11,14 +11,21 @@ import (
 
 // Configuration wraps the settings required for the app
 type Configuration struct {
-	Host      string       `yaml:"host"`     // The host to locally bind
+	Prod      bool         `yaml:"prod"`     // Whether in production (this will change the SSL handler)
+	Addr      string       `yaml:"addr"`     // The host to locally bind
 	LogLevel  string       `yaml:"loglevel"` // The log level to use
 	StaticDir string       `yaml:"static"`   // The static hosts root directory
 	Proxies   []HostConfig `yaml:"proxies"`  // The proxy information
 	SSL       struct {
-		Enable   bool   `yaml:"enable"`   // Whether to enable SSL
-		CertFile string `yaml:"certfile"` // The certfile path
-		KeyFile  string `yaml:"keyfile"`  // The keyfile path
+		RedirectHTTP struct {
+			Enable bool   `yaml:"enable"` // If true this will setup a second server to redirect HTTP -> HTTPS
+			Addr   string `yaml:"addr"`   // The address of the redirect
+		} `yaml:"redirecthttp"`
+		DisableLetsEncrypt bool `yaml:"disableletsencrypt"` // True if LetsEncrypt auto SSL should not be used
+		Default            struct {
+			CertFile string `yaml:"certfile"` // The certfile path
+			KeyFile  string `yaml:"keyfile"`  // The keyfile path
+		} `yaml:"files"`
 	} `yaml:"ssl"` // The ssl information
 }
 
@@ -26,6 +33,18 @@ type Configuration struct {
 type HostConfig struct {
 	Proxy string `yaml:"proxy"`
 	Host  string `yaml:"host"`
+}
+
+// DefaultConfig will return a sensible default configuration
+func DefaultConfig() Configuration {
+	conf := Configuration{}
+	conf.Prod = true
+	conf.Addr = DefaultSSLAddr
+	conf.StaticDir = "."
+	conf.LogLevel = "DEBUG"
+	conf.SSL.RedirectHTTP.Enable = true
+	conf.SSL.RedirectHTTP.Addr = ":80"
+	return conf
 }
 
 // ParseFileConfig will return a new Configuration
